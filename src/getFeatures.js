@@ -14,14 +14,17 @@ module.exports = (auth) => {
         auth: auth
       })
       .then( (response) => {
-        if (response.data.issues.length == 0) done()
+        if (response.data.issues.length == 0) {
+          done()
+        } else {
+          features = features.concat(
+            response.data.issues.map( issue => createFeatureFromIssue(issue) )
+          );
 
-        features = features.concat(
-          response.data.issues.map( issue => createFeatureFromIssue(issue))
-        );
+          startAt = startAt + maxResults;
+          appendNextPage(err, done);
+        }
 
-        startAt = startAt + maxResults;
-        appendNextPage(err, done);
       })
       .catch(error => {
         err(error);
