@@ -2,7 +2,7 @@
   "name": "jirautils",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/go.js",
   "scripts": {},
   "author": "",
   "license": "ISC",
